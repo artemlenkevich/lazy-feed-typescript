@@ -1,0 +1,17 @@
+.App {
+    background-color: #e2e5ee;
+    min-height: 100vh;
+}
+
+.feedContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding-top: 15px;
+    max-width: 850px;
+}
+
+.postWall {
+    margin-right: 10px;
+}
+

@@ -1,0 +1,56 @@
+.post {
+    background-color: #fff;
+    max-width: 600px;
+}
+
+.postHeader {
+    padding: 20px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.postUserPhoto {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.postInfo {
+    margin-left: 5px;
+    padding-top: 5px;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    color: #616770;
+}
+
+.closeBtn {
+    position: absolute;
+    left: calc(100% - 50px);
+    color: #c2c2c2;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.postContentImage {
+    object-fit: cover;
+    width: 100%;
+}
+
+.postActivities {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    color: #604d92;
+}
+
+.postActivity {
+    display: flex;
+    justify-content: center;
+    width: 140px;
+    padding: 5px 0;
+}
+
+.postActivityIcon {
+    margin-right: 10px;
+}

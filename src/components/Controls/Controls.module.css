@@ -1,0 +1,58 @@
+.controls {
+    width: 240px;
+    font-size: 14px;
+}
+
+.fixedControls {
+    position: fixed;
+    padding: 10px 20px;
+    width: 240px;
+    background-color: #fff;
+}
+
+.controlsTitle {
+    padding: 10px 0;
+    font-weight: 400;
+}
+
+.control {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controlLabel {
+    cursor: pointer;
+}
+
+/* Toggle */
+
+.toggle {
+    width: 30px;
+    height: 10px;
+    background: #d1d1d1;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer
+}
+
+.round {
+    position: absolute;
+    top: -3px;
+    left: 0px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background-color: #b6b6b6;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.roundSwitchedOn {
+    left: 13px;
+    background-color: #7964b1;
+    transition: all .2s ease-in-out;
+}
+
+/* End Toggle */
