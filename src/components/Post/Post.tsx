@@ -1,14 +1,22 @@
 import styles from './Post.module.css'
-import userPhoto from './assets/userPhoto.jpg'
-import contentImage from './assets/contentImage.jpg'
+// import userPhoto from './assets/userPhoto.jpg'
+// import contentImage from './assets/contentImage.jpg'
+import React from 'react'
 
-export const Post = () => {
+interface Ipost {
+    firstname: string
+    lastname: string
+    avatar: string
+    contentImage: string
+}
+
+export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}) => {
     return (
         <div className={styles.post}>
             <div className={styles.postHeader}>
-                <img className={styles.postUserPhoto} src={userPhoto} alt="avatar" />
+                <img className={styles.postUserPhoto} src={avatar} alt="avatar" />
                 <div className={styles.postInfo}>
-                    <div className={styles.postCreatorName}>Alex Lesly</div>
+                    <div className={styles.postCreatorName}>{firstname + ' ' + lastname}</div>
                     <div className={styles.postCreationDate}>14 Jun at 16:46:36</div>
                 </div>
                 <span className={styles.closeBtn}>
@@ -16,7 +24,7 @@ export const Post = () => {
                 </span>
             </div>
             <div className={styles.postContent}>
-                <img className={styles.postContentImage} src={contentImage} alt="content image" />
+                <img className={styles.postContentImage} src={contentImage} alt="content" />
             </div>
             <div className={styles.postActivities}>
                 <div className={styles.postActivity}>

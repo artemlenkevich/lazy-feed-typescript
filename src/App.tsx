@@ -1,7 +1,7 @@
 import styles from './App.module.css';
 import { Controls } from './components/Controls/Controls';
 import { Header } from './components/Header/Header';
-import { Post } from './components/Post/Post';
+import PostsWallContainer from './containers/PostsWallContainer/PostsWallContainer';
 
 function App() {
     return (
@@ -9,9 +9,7 @@ function App() {
             <Header />
             <main className={styles.feed}>
                 <div className={styles.feedContainer}>
-                    <div className={styles.postWall}>
-                        <Post />
-                    </div>
+                    <PostsWallContainer />
                     <Controls />
                 </div>
             </main>
@@ -20,3 +18,5 @@ function App() {
 }
 
 export default App;
+
+// (store.dispatch as ThunkDispatch<AppStateType, unknown, AnyAction>)(requestPosts(5))
