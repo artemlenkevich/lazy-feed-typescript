@@ -1,11 +1,6 @@
+import { useAppSelector } from '../../redux/hooks'
+import { setAutoUpdate, setStopUpload } from '../../redux/postsSlice'
 import styles from './Controls.module.css'
-
-interface IControls {
-    stopUpload: boolean
-    setStopUpload: (isEnable: boolean) => void
-    autoUpdate: boolean
-    setAutoUpdate: (isEnable: boolean) => void
-}
 
 interface IControl {
     controlName: string
@@ -17,7 +12,10 @@ interface IToggle {
     isActive: boolean
 }
 
-export const Controls: React.FC<IControls> = ({stopUpload, setStopUpload, autoUpdate, setAutoUpdate}) => {
+export const Controls: React.FC = () => {
+    const stopUpload = useAppSelector(state => state.posts.stopUpload)
+    const autoUpdate = useAppSelector(state => state.posts.autoUpdate)
+
     const onStopUploadClick = () => {
         setStopUpload(!stopUpload)
     }

@@ -1,14 +1,27 @@
 import styles from './PostsWall.module.css'
 import { Post } from '../Post/Post'
-import React from 'react'
-import { PostType } from '../../redux/postsSlice'
+import React, { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { requestPosts } from '../../redux/postsSlice'
 
-interface IPostsWall {
-    posts: Array<PostType>
-    requestPosts: (quantity: number) => void
-}
+export const PostsWall: React.FC = () => {
+    const posts = useAppSelector(state => state.posts.posts)
+    const stopUpload = useAppSelector(state => state.posts.stopUpload)
+    const dispatch = useAppDispatch()
 
-export const PostsWall: React.FC<IPostsWall> = ({ posts, requestPosts }) => {
+    useEffect(() => {
+        if (!posts.length) dispatch(requestPosts(5))
+    })
+
+    useEffect(() => {
+        let timerId: NodeJS.Timeout
+        if (stopUpload) timerId = setInterval(() => requestPosts(1), 3000)
+        return () => {
+            clearInterval(timerId)
+        }
+
+    }, [stopUpload])
+
 
     return (
         <div className={styles.postsWall}>

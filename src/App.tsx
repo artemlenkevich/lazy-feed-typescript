@@ -1,7 +1,7 @@
 import styles from './App.module.css';
-import ControlsContainer from './containers/ControlsContainer/ControlsContainer';
 import { Header } from './components/Header/Header';
-import PostsWallContainer from './containers/PostsWallContainer/PostsWallContainer';
+import { PostsWall } from './components/PostsWall/PostsWall';
+import { Controls } from './components/Controls/Controls';
 
 function App() {
     return (
@@ -9,8 +9,8 @@ function App() {
             <Header />
             <main className={styles.feed}>
                 <div className={styles.feedContainer}>
-                    <PostsWallContainer />
-                    <ControlsContainer />
+                    <PostsWall />
+                    <Controls />
                 </div>
             </main>
         </div>
