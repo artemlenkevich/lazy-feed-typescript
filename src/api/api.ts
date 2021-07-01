@@ -1,4 +1,4 @@
-import { Author, PostType } from "../redux/postsReducer"
+import { Author, PostType } from "../redux/postsSlice"
 
 interface RandomUsers {
     info: {
@@ -45,7 +45,6 @@ export const postsApi = {
         return fetch(`https://randomuser.me/api/?results=${quantity}&inc=name,picture,login`)
         .then(r => r.json())
         .then((randomUsers: RandomUsers) => {
-            console.log(randomUsers)
             let users: Array<Author> = []
             randomUsers.results.forEach((randomUser) => {
                 users.push({

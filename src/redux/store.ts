@@ -1,17 +1,14 @@
-import { applyMiddleware, combineReducers, createStore } from "redux"
-import thunk from "redux-thunk"
-import { postReducer } from "./postsReducer"
+import { configureStore } from "@reduxjs/toolkit";
+import postsReducer from "./postsSlice";
 
-const rootReducer = combineReducers({
-    posts: postReducer
+export const store = configureStore({
+    reducer: {
+        posts: postsReducer
+    }
 })
 
-type RootReducerType = typeof rootReducer;
-export type AppStateType = ReturnType<RootReducerType>;
+export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
-
 declare const window: any
-
 window.store = store

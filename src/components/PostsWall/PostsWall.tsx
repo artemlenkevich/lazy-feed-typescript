@@ -1,7 +1,7 @@
 import styles from './PostsWall.module.css'
 import { Post } from '../Post/Post'
 import React from 'react'
-import { PostType } from '../../redux/postsReducer'
+import { PostType } from '../../redux/postsSlice'
 
 interface IPostsWall {
     posts: Array<PostType>
@@ -12,6 +12,7 @@ export const PostsWall: React.FC<IPostsWall> = ({ posts, requestPosts }) => {
 
     return (
         <div className={styles.postsWall}>
+            <ShowNewPosts />
             {
                 posts.map(post => <Post key={post.author.id}
                                         firstname={post.author.firstname}
@@ -19,6 +20,14 @@ export const PostsWall: React.FC<IPostsWall> = ({ posts, requestPosts }) => {
                                         avatar={post.author.avatarUrl}
                                         contentImage={post.contentImageUrl}/>)
             }
+        </div>
+    )
+}
+
+const ShowNewPosts = () => {
+    return (
+        <div className={styles.showNewPosts}>
+            Show <b>1</b> new posts
         </div>
     )
 }

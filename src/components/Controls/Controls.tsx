@@ -1,48 +1,59 @@
-import React, { useState } from 'react'
 import styles from './Controls.module.css'
 
-type ControlProps = {
+interface IControls {
+    stopUpload: boolean
+    setStopUpload: (isEnable: boolean) => void
+    autoUpdate: boolean
+    setAutoUpdate: (isEnable: boolean) => void
+}
+
+interface IControl {
     controlName: string
+    isActive: boolean
+    onControlClick: () => void
 }
 
-type ToggleProps = {
-    toggleIsOn: boolean
-    onControlClick: React.MouseEventHandler
+interface IToggle {
+    isActive: boolean
 }
 
-export const Controls: React.FC = () => {
+export const Controls: React.FC<IControls> = ({stopUpload, setStopUpload, autoUpdate, setAutoUpdate}) => {
+    const onStopUploadClick = () => {
+        setStopUpload(!stopUpload)
+    }
+
+    const onAutoUpdateClick = () => {
+        setAutoUpdate(!autoUpdate)
+    }
+
     return (
         <div className={styles.controls}>
             <div className={styles.fixedControls}>
                 <h4 className={styles.controlsTitle}>Feed Controls</h4>
                 <div className={styles.feedControls}>
-                    <Control controlName='Stop Upload'/>
+                    <Control controlName='Stop upload' isActive={stopUpload} onControlClick={onStopUploadClick} />
+                    <Control controlName='Autoupdate' isActive={autoUpdate} onControlClick={onAutoUpdateClick}/>
                 </div>
             </div>
         </div>
     )
 }
 
-const Control: React.FC<ControlProps> = ({controlName}) => {
-    const [toggleIsOn, setTogglePositionOn] = useState(false);
-
-    const onControlClick = () => {
-        setTogglePositionOn(!toggleIsOn)
-    }
+const Control: React.FC<IControl> = ({controlName, isActive, onControlClick}) => {
 
     return (
-        <div className={styles.control}>
-            <div className={styles.controlLabel} onClick={onControlClick}>{controlName}</div>
-            <Toggle toggleIsOn={toggleIsOn} onControlClick={onControlClick}/>
+        <div className={styles.control} onClick={onControlClick}>
+            <div className={styles.controlLabel}>{controlName}</div>
+            <Toggle isActive ={isActive} />
         </div>
     )
 }
 
-const Toggle: React.FC<ToggleProps> = ({toggleIsOn, onControlClick}) => {
-    const roundClassNames = toggleIsOn ? styles.round + ' ' + styles.roundSwitchedOn : styles.round;
+const Toggle: React.FC<IToggle> = ({isActive}) => {
+    const roundClassNames = isActive ? styles.round + ' ' + styles.roundSwitchedOn : styles.round;
 
     return (
-        <div className={styles.toggle} onClick={onControlClick}>
+        <div className={styles.toggle}>
             <div className={roundClassNames} />
         </div>
     )
