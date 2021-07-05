@@ -4,7 +4,7 @@ import { postsApi } from "../api/api"
 interface InitialState {
     posts: Array<PostType>
     hiddenPosts: Array<PostType>
-    stopUpload: boolean
+    autoUpload: boolean
     autoUpdate: boolean
 }
 
@@ -23,7 +23,7 @@ export interface Author {
 const initialState: InitialState = {
     posts: [] as Array<PostType>,
     hiddenPosts: [] as Array<PostType>,
-    stopUpload: true,
+    autoUpload: false,
     autoUpdate: true
 }
 
@@ -38,8 +38,8 @@ export const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        setStopUpload: (state, action: PayloadAction<boolean>) => {
-            state.stopUpload = action.payload
+        setAutoUpload: (state, action: PayloadAction<boolean>) => {
+            state.autoUpload = action.payload
         },
         setAutoUpdate: (state, action: PayloadAction<boolean>) => {
             state.autoUpdate = action.payload
@@ -64,6 +64,6 @@ export const postsSlice = createSlice({
     }
 })
 
-export const { setStopUpload, setAutoUpdate, showHiddenPosts } = postsSlice.actions
+export const { setAutoUpload, setAutoUpdate, showHiddenPosts } = postsSlice.actions
 
 export default postsSlice.reducer

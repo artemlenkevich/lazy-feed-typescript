@@ -13,7 +13,7 @@ interface IShowNewPosts {
 export const PostsWall: React.FC = () => {
     const posts = useAppSelector(state => state.posts.posts)
     const hiddenPosts = useAppSelector(state => state.posts.hiddenPosts)
-    const stopUpload = useAppSelector(state => state.posts.stopUpload)
+    const autoUpload = useAppSelector(state => state.posts.autoUpload)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -22,12 +22,12 @@ export const PostsWall: React.FC = () => {
 
     useEffect(() => {
         let timerId: NodeJS.Timeout
-        if (!stopUpload) timerId = setInterval(() => dispatch(requestPosts(1)), 5000)
+        if (autoUpload) timerId = setInterval(() => dispatch(requestPosts(1)), 5000)
         return () => {
             clearInterval(timerId)
         }
 
-    }, [stopUpload, dispatch])
+    }, [autoUpload, dispatch])
 
     const onShowNewPostsClick = () => {
         dispatch(showHiddenPosts())

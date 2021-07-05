@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { setAutoUpdate, setStopUpload } from '../../redux/postsSlice'
+import { setAutoUpdate, setAutoUpload } from '../../redux/postsSlice'
 import styles from './Controls.module.css'
 
 interface IControl {
@@ -14,11 +14,11 @@ interface IToggle {
 
 export const Controls: React.FC = () => {
     const dispatch = useAppDispatch()
-    const stopUpload = useAppSelector(state => state.posts.stopUpload)
+    const autoUpload = useAppSelector(state => state.posts.autoUpload)
     const autoUpdate = useAppSelector(state => state.posts.autoUpdate)
 
-    const onStopUploadClick = () => {
-        dispatch(setStopUpload(!stopUpload))
+    const onAutoUploadClick = () => {
+        dispatch(setAutoUpload(!autoUpload))
     }
 
     const onAutoUpdateClick = () => {
@@ -30,7 +30,7 @@ export const Controls: React.FC = () => {
             <div className={styles.fixedControls}>
                 <h4 className={styles.controlsTitle}>Feed Controls</h4>
                 <div className={styles.feedControls}>
-                    <Control controlName='Stop upload' isActive={stopUpload} onControlClick={onStopUploadClick} />
+                    <Control controlName='Autoupload' isActive={autoUpload} onControlClick={onAutoUploadClick} />
                     <Control controlName='Autoupdate' isActive={autoUpdate} onControlClick={onAutoUpdateClick}/>
                 </div>
             </div>
