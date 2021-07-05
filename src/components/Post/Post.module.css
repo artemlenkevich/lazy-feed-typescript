@@ -2,6 +2,12 @@
     background-color: #fff;
     margin-bottom: 10px;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+    animation: post .8s ease-in forwards
+}
+
+@keyframes post {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 .postHeader {
@@ -51,6 +57,12 @@
     justify-content: center;
     width: 140px;
     padding: 5px 0;
+
+    cursor: pointer;
+}
+
+.postActivity:hover {
+    background: rgba(182, 167, 222, 0.4);
 }
 
 .postActivityIcon {

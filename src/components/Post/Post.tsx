@@ -1,7 +1,7 @@
 import styles from './Post.module.css'
-// import userPhoto from './assets/userPhoto.jpg'
-// import contentImage from './assets/contentImage.jpg'
-import React from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { setInterval } from 'timers'
 
 interface Ipost {
     firstname: string
@@ -11,6 +11,31 @@ interface Ipost {
 }
 
 export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}) => {
+    let [likes, setLikes] = useState(getRandomCeilInt(0, 1000))
+    let [likedByMe, setLikedByMe] = useState(false)
+
+    let [views, setViews] = useState(getRandomCeilInt(likes, likes * 10))
+
+    function getRandomCeilInt(min: number, max: number) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //Include max and min
+      }
+    
+    const onLikeIconClick = () => {
+        if (!likedByMe) {
+            setLikes(++likes)
+        } else {
+            setLikes(--likes)
+        }
+        setLikedByMe(!likedByMe)
+    }
+
+    useEffect(() => {
+        setInterval(() => setLikes((likes) => ++likes), getRandomCeilInt(1000, 3000))
+        setInterval(() => setViews((views) => ++views), getRandomCeilInt(1000, 2000))
+    }, [])
+
     return (
         <div className={styles.post}>
             <div className={styles.postHeader}>
@@ -27,11 +52,11 @@ export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}
                 <img className={styles.postContentImage} src={contentImage} alt="content" />
             </div>
             <div className={styles.postActivities}>
-                <div className={styles.postActivity}>
+                <div className={styles.postActivity} onClick={onLikeIconClick}>
                     <div className={styles.postActivityIcon}>
-                        <i className='far fa-heart'></i>
+                        <i className={likedByMe ? 'fas fa-heart' : 'far fa-heart'}></i>
                     </div>
-                    <div className={styles.likeCount}>70</div>
+                    <div className={styles.likeCount}>{likes}</div>
                 </div>
                 <div className={styles.postActivity}>
                     <div className={styles.postActivityIcon}>
@@ -43,7 +68,7 @@ export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}
                     <div className={styles.postActivityIcon}>
                         <i className='far fa-eye'></i>
                     </div>
-                    <div className={styles.viewsCount}>1296</div>
+                    <div className={styles.viewsCount}>{views}</div>
                 </div>
             </div>
         </div>

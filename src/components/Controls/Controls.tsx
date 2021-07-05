@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../redux/hooks'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { setAutoUpdate, setStopUpload } from '../../redux/postsSlice'
 import styles from './Controls.module.css'
 
@@ -13,15 +13,16 @@ interface IToggle {
 }
 
 export const Controls: React.FC = () => {
+    const dispatch = useAppDispatch()
     const stopUpload = useAppSelector(state => state.posts.stopUpload)
     const autoUpdate = useAppSelector(state => state.posts.autoUpdate)
 
     const onStopUploadClick = () => {
-        setStopUpload(!stopUpload)
+        dispatch(setStopUpload(!stopUpload))
     }
 
     const onAutoUpdateClick = () => {
-        setAutoUpdate(!autoUpdate)
+        dispatch(setAutoUpdate(!autoUpdate))
     }
 
     return (
