@@ -11,6 +11,7 @@ interface InitialState {
 export interface PostType {
     author: Author
     contentImageUrl: string
+    id: number
 }
 
 export interface Author {
@@ -51,6 +52,9 @@ export const postsSlice = createSlice({
         showHiddenPosts: (state) => {
             state.posts = [...state.hiddenPosts, ...state.posts]
             state.hiddenPosts = []
+        },
+        removePost: (state, action: PayloadAction<number>) => {
+            state.posts = state.posts.filter(post => post.id !== action.payload)
         }
     },
     extraReducers: (builder) => {
@@ -64,6 +68,6 @@ export const postsSlice = createSlice({
     }
 })
 
-export const { setAutoUpload, setAutoUpdate, showHiddenPosts } = postsSlice.actions
+export const { setAutoUpload, setAutoUpdate, showHiddenPosts, removePost } = postsSlice.actions
 
-export default postsSlice.reducer
+export const postsReducer =  postsSlice.reducer

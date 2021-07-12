@@ -1,5 +1,5 @@
 import styles from './PostsWall.module.css'
-import { Post } from '../Post/Post'
+import { Post } from './Post/Post'
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { requestPosts, showHiddenPosts } from '../../redux/postsSlice'
@@ -17,8 +17,8 @@ export const PostsWall: React.FC = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        if (!posts.length) dispatch(requestPosts(5))
-    })
+        dispatch(requestPosts(1))
+    }, [dispatch])
 
     useEffect(() => {
         let timerId: NodeJS.Timeout
@@ -26,7 +26,6 @@ export const PostsWall: React.FC = () => {
         return () => {
             clearInterval(timerId)
         }
-
     }, [autoUpload, dispatch])
 
     const onShowNewPostsClick = () => {
@@ -38,7 +37,8 @@ export const PostsWall: React.FC = () => {
         <div className={styles.postsWall}>
             <ShowNewPosts hiddenPostsLength={hiddenPosts.length} onShowNewPostsClick={onShowNewPostsClick}/>
             {
-                posts.map(post => <Post key={post.author.id}
+                posts.map(post => <Post key={post.id}
+                                        postId={post.id}
                                         firstname={post.author.firstname}
                                         lastname={post.author.lastname}
                                         avatar={post.author.avatarUrl}
@@ -49,7 +49,6 @@ export const PostsWall: React.FC = () => {
 }
 
 const ShowNewPosts: React.FC<IShowNewPosts> = ({hiddenPostsLength, onShowNewPostsClick}) => {
-    console.log('render')
     if (hiddenPostsLength) {
         return (
             <div className={styles.showNewPosts} onClick={onShowNewPostsClick}>

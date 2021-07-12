@@ -2,26 +2,35 @@ import styles from './Post.module.css'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { setInterval } from 'timers'
+import { Comments } from './Comments/Comments'
+import { useAppDispatch } from '../../../redux/hooks'
+import { removePost } from '../../../redux/postsSlice'
 
 interface Ipost {
     firstname: string
     lastname: string
     avatar: string
     contentImage: string
+    postId: number
 }
 
-export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}) => {
+export const Post: React.FC<Ipost> = ({ postId, firstname, lastname, avatar, contentImage }) => {
+    console.log('rerender post')
     let [likes, setLikes] = useState(getRandomCeilInt(0, 1000))
     let [likedByMe, setLikedByMe] = useState(false)
-
     let [views, setViews] = useState(getRandomCeilInt(likes, likes * 10))
+
+    let [commentsIsShow, setShowComments] = useState(false)
+    let [comments, setComment] = useState<Array<string>>([])
+
+    const dispatch = useAppDispatch()
 
     function getRandomCeilInt(min: number, max: number) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min; //Include max and min
-      }
-    
+    }
+
     const onLikeIconClick = () => {
         if (!likedByMe) {
             setLikes(++likes)
@@ -31,9 +40,31 @@ export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}
         setLikedByMe(!likedByMe)
     }
 
+    const onCommentsIconClick = () => {
+        if (comments.length) {
+            setShowComments(!commentsIsShow)
+        }
+    }
+
+    const onCloseBtnClick = () => {
+        dispatch(removePost(postId))
+    }
+
     useEffect(() => {
-        setInterval(() => setLikes((likes) => ++likes), getRandomCeilInt(1000, 3000))
-        setInterval(() => setViews((views) => ++views), getRandomCeilInt(1000, 2000))
+        console.log('set interval')
+        // const LikesTimerId = setInterval(() => {console.log('setLikes'); setLikes((likes) => ++likes)}, getRandomCeilInt(1000, 3000))
+        // const ViewsTimerId = setInterval(() => setViews((views) => ++views), getRandomCeilInt(1000, 2000))
+        const timerId = setInterval(() => {
+            console.log('test')}, 3000)
+        // console.log(timerId)
+
+        return () => {
+            console.log('Сброс')
+            // console.log(timerId)
+            // clearInterval(LikesTimerId)
+            // clearInterval(ViewsTimerId)
+            clearInterval(timerId)
+        }
     }, [])
 
     return (
@@ -44,7 +75,7 @@ export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}
                     <div className={styles.postCreatorName}>{firstname + ' ' + lastname}</div>
                     <div className={styles.postCreationDate}>14 Jun at 16:46:36</div>
                 </div>
-                <span className={styles.closeBtn}>
+                <span className={styles.closeBtn} onClick={onCloseBtnClick}>
                     <i className='far fa-window-close' />
                 </span>
             </div>
@@ -58,11 +89,11 @@ export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}
                     </div>
                     <div className={styles.likeCount}>{likes}</div>
                 </div>
-                <div className={styles.postActivity}>
+                <div className={styles.postActivity} onClick={onCommentsIconClick}>
                     <div className={styles.postActivityIcon}>
                         <i className='far fa-comment-alt'></i>
                     </div>
-                    <div className={styles.commentCount}>0</div>
+                    <div className={styles.commentCount}>{comments.length}</div>
                 </div>
                 <div className={styles.postActivity}>
                     <div className={styles.postActivityIcon}>
@@ -71,6 +102,7 @@ export const Post: React.FC<Ipost>= ({firstname, lastname, avatar, contentImage}
                     <div className={styles.viewsCount}>{views}</div>
                 </div>
             </div>
+            <Comments commentsIsShow={commentsIsShow} setShowComments={setShowComments} comments={comments} setComment={setComment} />
         </div>
     )
 }

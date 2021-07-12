@@ -1,0 +1,74 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(42,62,82,.7);
+}
+
+/* Forms ======================= */
+
+.signUp {
+    margin: 120px auto 0;
+    padding: 36px;
+
+    max-width: 334px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.title {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2a3e52;
+    font-size: 20px;
+}
+
+.inputWrapper {
+    margin-bottom: 15px;
+}
+
+.input {
+    padding: 10px 12px 10px 40px;
+    width: 100%;
+    border: 1px solid #eceef1;
+    border-radius: 6px;
+
+    color: #87969d;
+    font-size: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    outline: none;
+}
+
+.input::placeholder {
+    color: #87969d;
+}
+
+.input:focus {
+    border-color: #00d061;
+}
+
+.submit {
+    padding: 8px;
+
+    width: 100%;
+    background-color: #00d061;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+}
+
+.submit:active {
+    background-color: #04b959;;
+}
+
+.errorMessage {
+    color: #df1d1d;
+}

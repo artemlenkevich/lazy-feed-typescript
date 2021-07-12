@@ -6,7 +6,7 @@
 
 .fixedHeader {
     position: fixed;
-    z-index: 1000;
+    z-index: 100;
     width: 100%;
     padding: 15px 0;
     background-color: #4e4764;
@@ -45,6 +45,8 @@
 }
 
 .userInfo li:first-child {
+    margin-bottom: 3px;
+    
     color: #8075a4;
     padding-top: 2px;
 }
@@ -54,6 +56,8 @@
 }
 
 .userAvatar {
+    border-radius: 50%;
+    object-fit: cover;
     width: 40px;
     height: 40px;
 }

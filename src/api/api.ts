@@ -36,7 +36,7 @@ export const postsApi = {
                 let posts: Array<PostType> = []
                 let [users, photos] = result;
                 for (let i = 0; i < quantity; i++) {
-                    posts.push({author: users[i], contentImageUrl: photos[i]})
+                    posts.push({author: users[i], contentImageUrl: photos[i], id: Math.random()})
                 }
                 return posts
             })

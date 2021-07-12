@@ -1,0 +1,111 @@
+.hideComments {
+    padding: 5px;
+
+    background-color: #f0f0f0;
+    cursor: pointer;
+
+    color: black;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    border: 1px solid #e7e7e7;
+}
+
+.writeComment {
+    display: flex;
+    padding: 10px 20px;
+    border-top: 1px solid #e7e7e7;
+}
+
+.commentAvatar {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 35px;
+    height: 35px;
+}
+
+.commentForm {
+    position: relative;
+    margin-left: 10px;
+    display: flex;
+
+    width: 100%;
+}
+
+.commentFormInput {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.commentFormButton {
+    background-color: #fff;
+    border: none;
+    width: 50px;
+    cursor: pointer;
+}
+
+.commentFormButton:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f3be";
+    color: #9a85d2;
+    font-size: 18px;
+}
+
+.commentFormButton:hover {
+    background: rgba(182, 167, 222, 0.4);
+}
+
+.commentsHolder {
+    padding: 20px;
+}
+
+.comment {
+    padding: 10px 5px;
+    display: flex;
+}
+
+.commentBody {
+    margin-left: 10px;
+}
+
+.commentUsername {
+    font-size: 14px;
+    color: #8075a4;
+
+}
+
+.commentText {
+    color: #2f2f2f;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.errorMessage {
+    position: absolute;
+
+    padding: 10px;
+    top: -20px;
+    right: -210px;
+    width: 200px;
+    background-color: #df1d1d;
+    border-radius: 5px;
+
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.2;
+}
+
+.errorMessage::before {
+    position: absolute;
+    left: -20px;
+    content: '';
+    border-right: 10px solid #df1d1d;
+    border-bottom: 10px solid #df1d1d;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
