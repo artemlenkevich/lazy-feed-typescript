@@ -3,7 +3,6 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import styles from './Comments.module.css'
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks'
 import { setAutoUpdate } from '../../../../redux/postsSlice'
-import { useEffect } from 'react'
 
 interface IComments {
     commentsIsShow: boolean
@@ -65,7 +64,7 @@ const Comment: React.FC<IComment> = ({ comment, userName }) => {
 const WriteComment: React.FC<IWriteComment> = ({ isAuth, setComment, setShowComments, onCommentFieldFocus }) => {
     return (
         <div className={styles.writeComment}>
-            <img className={styles.commentAvatar} src={commentsAvatar} alt="avatar" />
+            { isAuth && <img className={styles.commentAvatar} src={commentsAvatar} alt="avatar" /> }
             <Formik
                 initialValues={{
                     comment: ''
