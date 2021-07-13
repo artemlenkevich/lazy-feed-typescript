@@ -1,7 +1,6 @@
 import styles from './Post.module.css'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { setInterval } from 'timers'
 import { Comments } from './Comments/Comments'
 import { useAppDispatch } from '../../../redux/hooks'
 import { removePost } from '../../../redux/postsSlice'
@@ -15,7 +14,6 @@ interface Ipost {
 }
 
 export const Post: React.FC<Ipost> = ({ postId, firstname, lastname, avatar, contentImage }) => {
-    console.log('rerender post')
     let [likes, setLikes] = useState(getRandomCeilInt(0, 1000))
     let [likedByMe, setLikedByMe] = useState(false)
     let [views, setViews] = useState(getRandomCeilInt(likes, likes * 10))
@@ -51,19 +49,12 @@ export const Post: React.FC<Ipost> = ({ postId, firstname, lastname, avatar, con
     }
 
     useEffect(() => {
-        console.log('set interval')
-        // const LikesTimerId = setInterval(() => {console.log('setLikes'); setLikes((likes) => ++likes)}, getRandomCeilInt(1000, 3000))
-        // const ViewsTimerId = setInterval(() => setViews((views) => ++views), getRandomCeilInt(1000, 2000))
-        const timerId = setInterval(() => {
-            console.log('test')}, 3000)
-        // console.log(timerId)
+        const LikesTimerId = setInterval(() => setLikes((likes) => ++likes), getRandomCeilInt(1000, 3000))
+        const ViewsTimerId = setInterval(() => setViews((views) => ++views), getRandomCeilInt(1000, 2000))
 
         return () => {
-            console.log('Сброс')
-            // console.log(timerId)
-            // clearInterval(LikesTimerId)
-            // clearInterval(ViewsTimerId)
-            clearInterval(timerId)
+            clearInterval(LikesTimerId)
+            clearInterval(ViewsTimerId)
         }
     }, [])
 
