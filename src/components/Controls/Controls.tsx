@@ -12,7 +12,23 @@ interface IToggle {
     isActive: boolean
 }
 
+interface IInfoField {
+    name: string
+    value: number
+}
+
 export const Controls: React.FC = () => {
+    return (
+        <div className={styles.controls}>
+            <div className={styles.fixedControls}>
+                <FeedControls />
+                <AppInfo />
+            </div>
+        </div>
+    )
+}
+
+const FeedControls: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
     const autoUpload = useAppSelector(state => state.posts.autoUpload)
     const autoUpdate = useAppSelector(state => state.posts.autoUpdate)
@@ -26,34 +42,51 @@ export const Controls: React.FC = () => {
     }
 
     return (
-        <div className={styles.controls}>
-            <div className={styles.fixedControls}>
-                <h4 className={styles.controlsTitle}>Feed Controls</h4>
-                <div className={styles.feedControls}>
-                    <Control controlName='Autoupload' isActive={autoUpload} onControlClick={onAutoUploadClick} />
-                    <Control controlName='Autoupdate' isActive={autoUpdate} onControlClick={onAutoUpdateClick}/>
-                </div>
-            </div>
-        </div>
+        <>
+            <h4 className={styles.controlsTitle}>Feed Controls</h4>
+            <Control controlName='Autoupload' isActive={autoUpload} onControlClick={onAutoUploadClick} />
+            <Control controlName='Autoupdate' isActive={autoUpdate} onControlClick={onAutoUpdateClick} />
+        </>
     )
 }
 
-const Control: React.FC<IControl> = ({controlName, isActive, onControlClick}) => {
-
+const Control: React.FC<IControl> = ({ controlName, isActive, onControlClick }) => {
     return (
         <div className={styles.control} onClick={onControlClick}>
             <div className={styles.controlLabel}>{controlName}</div>
-            <Toggle isActive ={isActive} />
+            <Toggle isActive={isActive} />
         </div>
     )
 }
 
-const Toggle: React.FC<IToggle> = ({isActive}) => {
+const Toggle: React.FC<IToggle> = ({ isActive }) => {
     const roundClassNames = isActive ? styles.round + ' ' + styles.roundSwitchedOn : styles.round;
 
     return (
         <div className={styles.toggle}>
             <div className={roundClassNames} />
+        </div>
+    )
+}
+
+const AppInfo: React.FC<{}> = () => {
+    const totalPostsLength = useAppSelector(state => state.posts.posts.length + state.posts.hiddenPosts.length)
+    const onScreenPostsLength = useAppSelector(state => state.posts.posts.length)
+
+    return (
+        <>
+            <h4 className={styles.controlsTitle}>App Info</h4>
+            <InfoField name='Total posts' value={totalPostsLength} />
+            <InfoField name='On screen' value={onScreenPostsLength} />
+        </>
+    )
+}
+
+const InfoField: React.FC<IInfoField> = ({ name, value }) => {
+    return (
+        <div className={styles.infoField}>
+            <span>{name}</span>
+            <span>{value}</span>
         </div>
     )
 }
