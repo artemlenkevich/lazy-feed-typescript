@@ -1,0 +1,18 @@
+.scrollTopBtn {
+    position: fixed;
+    top: 100px;
+    left: 50px;
+
+    text-decoration: none;
+    line-height: 1;
+    color: #b9b9b9;
+    font-size: 40px;
+
+    cursor: pointer;
+    animation: scrollTopBtn .4s ease forwards
+}
+
+@keyframes scrollTopBtn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}

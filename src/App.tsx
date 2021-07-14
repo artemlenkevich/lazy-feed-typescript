@@ -3,6 +3,7 @@ import { Header } from './components/Header/Header';
 import { PostsWall } from './components/PostsWall/PostsWall';
 import { Controls } from './components/Controls/Controls';
 import { Auth } from './components/Auth/Auth';
+import { ScrollTopBtn } from './components/ScrollTopBtn/ScrollTopBtn';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 </div>
             </main>
             <Auth />
+            <ScrollTopBtn />
         </div>
     );
 }
