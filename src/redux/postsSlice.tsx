@@ -59,6 +59,24 @@ export const postsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(requestPosts.fulfilled, (state, action) => {
+            const postsLength = state.posts.length
+            const hiddenPostsLength = state.hiddenPosts.length
+            const totalPostsLength = postsLength + hiddenPostsLength
+
+            const removeLast = (posts: Array<PostType>) => posts.splice(-1, 1)
+
+            if (!state.autoUpdate && totalPostsLength >= 50 && postsLength) {
+                removeLast(state.posts)
+            }
+
+            if (!state.autoUpdate && totalPostsLength >= 50 && !postsLength) {
+                removeLast(state.hiddenPosts)
+            }
+
+            if (state.autoUpdate && postsLength >= 50) {
+                removeLast(state.posts)
+            }
+
             if (state.autoUpdate) {
                 state.posts = [...action.payload, ...state.posts]
             } else {

@@ -11,13 +11,14 @@ interface IShowNewPosts {
 }
 
 export const PostsWall: React.FC = () => {
+    console.log('render PostsWall')
     const posts = useAppSelector(state => state.posts.posts)
     const hiddenPosts = useAppSelector(state => state.posts.hiddenPosts)
     const autoUpload = useAppSelector(state => state.posts.autoUpload)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(requestPosts(1))
+        dispatch(requestPosts(3))
     }, [dispatch])
 
     useEffect(() => {

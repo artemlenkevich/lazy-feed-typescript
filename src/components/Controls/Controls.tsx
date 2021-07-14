@@ -78,6 +78,7 @@ const AppInfo: React.FC<{}> = () => {
             <h4 className={styles.controlsTitle}>App Info</h4>
             <InfoField name='Total posts' value={totalPostsLength} />
             <InfoField name='On screen' value={onScreenPostsLength} />
+            <InfoField name ='Max posts' value={50} />
         </>
     )
 }
