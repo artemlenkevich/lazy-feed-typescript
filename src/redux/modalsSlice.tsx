@@ -7,6 +7,9 @@ const initialState = {
     },
     signIn: {
         isOpen: false
+    },
+    controls: {
+        isOpen: false
     }
 }
 
@@ -19,6 +22,9 @@ export const modalsSlice = createSlice({
         },
         setSignInIsOpen: (state, action: PayloadAction<boolean>) => {
             state.signIn.isOpen = action.payload
+        },
+        setControlsIsOpen: (state) => {
+            state.controls.isOpen = !state.controls.isOpen
         }
     },
     extraReducers: (builder) => {
@@ -29,6 +35,6 @@ export const modalsSlice = createSlice({
     }
 })
 
-export const { setSignInIsOpen, setSignUpIsOpen } = modalsSlice.actions
+export const { setSignInIsOpen, setSignUpIsOpen, setControlsIsOpen } = modalsSlice.actions
 
 export const modalsReducer = modalsSlice.reducer

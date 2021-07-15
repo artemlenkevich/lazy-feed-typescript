@@ -1,0 +1,13 @@
+.container {
+    width: 240px;
+}
+
+.fixedControls {
+    position: fixed;
+}
+
+@media (max-width: 880px) {
+    .container {
+        display: none;
+    }
+}

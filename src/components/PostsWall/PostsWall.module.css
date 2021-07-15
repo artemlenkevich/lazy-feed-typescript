@@ -16,3 +16,9 @@
     text-align: center;
     color: #fff;
 }
+
+@media (max-width: 880px) {
+    .postsWall {
+        margin: 0 auto;
+    }
+  }

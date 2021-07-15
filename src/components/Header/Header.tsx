@@ -1,7 +1,7 @@
 import styles from './Header.module.css'
 import userAvatar from './assets/user.jpg'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { setSignInIsOpen, setSignUpIsOpen } from '../../redux/modalsSlice'
+import { setControlsIsOpen, setSignInIsOpen, setSignUpIsOpen } from '../../redux/modalsSlice'
 import React from 'react'
 
 export const Header: React.FC<{}> = () => {
@@ -11,6 +11,7 @@ export const Header: React.FC<{}> = () => {
         <header className={styles.header}>
             <div className={styles.fixedHeader}>
                 <div className={styles.headerContainer}>
+                    <BurgerMenu />
                     <div className={styles.logo}>LazyFeed</div>
                     <div className={styles.rightPanel}>
                         {isAuth ? <UserBar /> : <AuthBar />}
@@ -18,6 +19,20 @@ export const Header: React.FC<{}> = () => {
                 </div>
             </div>
         </header>
+    )
+}
+
+const BurgerMenu: React.FC<{}> = () => {
+    const dispatch = useAppDispatch()
+
+    const onBurgerMenuClick = () => {
+        dispatch(setControlsIsOpen())
+    }
+
+    return (
+        <div className={styles.burgerMenu} onClick={onBurgerMenuClick}>
+            <i className='fas fa-bars' />
+        </div>
     )
 }
 

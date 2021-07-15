@@ -1,0 +1,35 @@
+.overlay {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.wrapper {
+    position: fixed;
+    left: -300px;
+    height: 100%;
+    transition: left 0.3s cubic-bezier(.17, .84, .44, 1);
+}
+
+.open {
+    visibility: visible;
+}
+
+.open .wrapper{
+    display: block;
+    left: 0;
+}
+
+@media (min-width: 880px) {
+    .overlay {
+        visibility: hidden;
+    }
+
+    .wrapper {
+        left: -300px;
+    }
+}

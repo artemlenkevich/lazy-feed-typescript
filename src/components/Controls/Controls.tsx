@@ -1,3 +1,4 @@
+import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { setAutoUpdate, setAutoUpload } from '../../redux/postsSlice'
 import styles from './Controls.module.css'
@@ -18,13 +19,12 @@ interface IInfoField {
 }
 
 export const Controls: React.FC = () => {
+
     return (
-        <div className={styles.controls}>
-            <div className={styles.fixedControls}>
+            <div className={styles.controls}>
                 <FeedControls />
                 <AppInfo />
             </div>
-        </div>
     )
 }
 
