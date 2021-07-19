@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/LazyFeed/static/css/main.a7a3f7d3.chunk.css",
+    "main.js": "/LazyFeed/static/js/main.a85b92f9.chunk.js",
+    "main.js.map": "/LazyFeed/static/js/main.a85b92f9.chunk.js.map",
+    "runtime-main.js": "/LazyFeed/static/js/runtime-main.d69eedca.js",
+    "runtime-main.js.map": "/LazyFeed/static/js/runtime-main.d69eedca.js.map",
+    "static/js/2.ab814f3b.chunk.js": "/LazyFeed/static/js/2.ab814f3b.chunk.js",
+    "static/js/2.ab814f3b.chunk.js.map": "/LazyFeed/static/js/2.ab814f3b.chunk.js.map",
+    "index.html": "/LazyFeed/index.html",
+    "static/css/main.a7a3f7d3.chunk.css.map": "/LazyFeed/static/css/main.a7a3f7d3.chunk.css.map",
+    "static/js/2.ab814f3b.chunk.js.LICENSE.txt": "/LazyFeed/static/js/2.ab814f3b.chunk.js.LICENSE.txt",
+    "static/media/user.1775f3e4.jpg": "/LazyFeed/static/media/user.1775f3e4.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d69eedca.js",
+    "static/js/2.ab814f3b.chunk.js",
+    "static/css/main.a7a3f7d3.chunk.css",
+    "static/js/main.a85b92f9.chunk.js"
+  ]
+}
