@@ -6,8 +6,8 @@ import { requestPosts, showHiddenPosts } from '../../redux/postsSlice'
 import { MouseEventHandler } from 'react'
 
 interface IShowNewPosts {
-    hiddenPostsLength: number
     onShowNewPostsClick: MouseEventHandler
+    hiddenPostsLength: number
 }
 
 export const PostsWall: React.FC = () => {
@@ -18,7 +18,7 @@ export const PostsWall: React.FC = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(requestPosts(3))
+        dispatch(requestPosts(1))
     }, [dispatch])
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export const PostsWall: React.FC = () => {
 
     return (
         <div className={styles.postsWall}>
-            <ShowNewPosts hiddenPostsLength={hiddenPosts.length} onShowNewPostsClick={onShowNewPostsClick}/>
+            { hiddenPosts.length !== 0 && <ShowNewPosts onShowNewPostsClick={onShowNewPostsClick} hiddenPostsLength={hiddenPosts.length} /> }
             {
                 posts.map(post => <Post key={post.id}
                                         postId={post.id}
@@ -49,14 +49,10 @@ export const PostsWall: React.FC = () => {
     )
 }
 
-const ShowNewPosts: React.FC<IShowNewPosts> = ({hiddenPostsLength, onShowNewPostsClick}) => {
-    if (hiddenPostsLength) {
+const ShowNewPosts: React.FC<IShowNewPosts> = ({onShowNewPostsClick, hiddenPostsLength}) => {
         return (
             <div className={styles.showNewPosts} onClick={onShowNewPostsClick}>
                 Show <b>{hiddenPostsLength}</b> new posts
             </div>
         )
-    } else {
-        return null
-    }
 }

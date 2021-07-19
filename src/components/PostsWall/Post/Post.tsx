@@ -14,12 +14,14 @@ interface Ipost {
 }
 
 export const Post: React.FC<Ipost> = ({ postId, firstname, lastname, avatar, contentImage }) => {
+    console.log('render post');
+    
     let [likes, setLikes] = useState(getRandomCeilInt(0, 1000))
     let [likedByMe, setLikedByMe] = useState(false)
     let [views, setViews] = useState(getRandomCeilInt(likes, likes * 10))
 
     let [commentsIsShow, setShowComments] = useState(false)
-    let [comments, setComment] = useState<Array<string>>([])
+    let [comments, addComment] = useState<Array<string>>([])
 
     const dispatch = useAppDispatch()
 
@@ -93,7 +95,7 @@ export const Post: React.FC<Ipost> = ({ postId, firstname, lastname, avatar, con
                     <div className={styles.viewsCount}>{views}</div>
                 </div>
             </div>
-            <Comments commentsIsShow={commentsIsShow} setShowComments={setShowComments} comments={comments} setComment={setComment} />
+            <Comments commentsIsShow={commentsIsShow} setShowComments={setShowComments} comments={comments} addComment={addComment} />
         </div>
     )
 }

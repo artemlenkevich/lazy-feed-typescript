@@ -3,12 +3,13 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import styles from './Comments.module.css'
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks'
 import { setAutoUpdate } from '../../../../redux/postsSlice'
+import React from 'react'
 
 interface IComments {
     commentsIsShow: boolean
     setShowComments: (show: boolean) => void
     comments: Array<string>
-    setComment: React.Dispatch<React.SetStateAction<Array<string>>>
+    addComment: React.Dispatch<React.SetStateAction<Array<string>>>
 }
 
 interface IComment {
@@ -18,12 +19,13 @@ interface IComment {
 
 interface IWriteComment {
     isAuth: boolean
-    setComment: React.Dispatch<React.SetStateAction<string[]>>
+    addComment: React.Dispatch<React.SetStateAction<string[]>>
     setShowComments: (show: boolean) => void
     onCommentFieldFocus: () => void
 }
 
-export const Comments: React.FC<IComments> = ({ commentsIsShow, setShowComments, comments, setComment }) => {
+export const Comments: React.FC<IComments> = React.memo(({ commentsIsShow, setShowComments, comments, addComment }) => {
+    console.log('render Comments')
     const userName = useAppSelector(state => state.auth.firstname + ' ' + state.auth.lastname)
     const isAuth = useAppSelector(state => state.auth.isAuth)
     const dispatch = useAppDispatch()
@@ -42,12 +44,14 @@ export const Comments: React.FC<IComments> = ({ commentsIsShow, setShowComments,
                     </div>
                 </>
             }
-            <WriteComment isAuth={isAuth} setComment={setComment} setShowComments={setShowComments} onCommentFieldFocus={onCommentFieldFocus} />
+            <WriteComment isAuth={isAuth} addComment={addComment} setShowComments={setShowComments} onCommentFieldFocus={onCommentFieldFocus} />
         </div>
     )
-}
+})
 
 const Comment: React.FC<IComment> = ({ comment, userName }) => {
+    console.log('render comment');
+    
     return (
         <div className={styles.comment}>
             <div className={styles.commentsAvatarWrapper}>
@@ -61,7 +65,7 @@ const Comment: React.FC<IComment> = ({ comment, userName }) => {
     )
 }
 
-const WriteComment: React.FC<IWriteComment> = ({ isAuth, setComment, setShowComments, onCommentFieldFocus }) => {
+const WriteComment: React.FC<IWriteComment> = ({ isAuth, addComment, setShowComments, onCommentFieldFocus }) => {
     return (
         <div className={styles.writeComment}>
             { isAuth && <img className={styles.commentAvatar} src={commentsAvatar} alt="avatar" /> }
@@ -76,7 +80,7 @@ const WriteComment: React.FC<IWriteComment> = ({ isAuth, setComment, setShowComm
                     } else if (!values.comment.length) {
                         setFieldError('comment', 'Please enter something')
                     } else {
-                        setComment(comments => [...comments, values.comment])
+                        addComment(comments => [...comments, values.comment])
                         setShowComments(true)
                         resetForm()
                     }

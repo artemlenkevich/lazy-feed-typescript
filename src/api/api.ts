@@ -31,7 +31,7 @@ interface RandomUser {
 
 export const postsApi = {
     getPosts(quantity: number) {
-        return Promise.all([this.getRandomUsers.call(this, quantity), this.getRandomContentPhotos.call(this, quantity)])
+        return Promise.all([this.getRandomUsers(quantity), this.getRandomContentPhotos(quantity)])
             .then(result => {
                 let posts: Array<PostType> = []
                 let [users, photos] = result;

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { setAutoUpdate, setAutoUpload } from '../../redux/postsSlice'
+import { setAutoUpdate, setAutoUpload, setClearOld } from '../../redux/postsSlice'
 import styles from './Controls.module.css'
 
 interface IControl {
@@ -32,6 +32,7 @@ const FeedControls: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
     const autoUpload = useAppSelector(state => state.posts.autoUpload)
     const autoUpdate = useAppSelector(state => state.posts.autoUpdate)
+    const clearOld = useAppSelector(state => state.posts.clearOld)
 
     const onAutoUploadClick = () => {
         dispatch(setAutoUpload(!autoUpload))
@@ -41,11 +42,16 @@ const FeedControls: React.FC<{}> = () => {
         dispatch(setAutoUpdate(!autoUpdate))
     }
 
+    const onClearOldClick = () => {
+        dispatch(setClearOld(!clearOld))
+    }
+
     return (
         <>
             <h4 className={styles.controlsTitle}>Feed Controls</h4>
             <Control controlName='Autoupload' isActive={autoUpload} onControlClick={onAutoUploadClick} />
             <Control controlName='Autoupdate' isActive={autoUpdate} onControlClick={onAutoUpdateClick} />
+            <Control controlName='Clear old' isActive={clearOld} onControlClick={onClearOldClick}/>
         </>
     )
 }
