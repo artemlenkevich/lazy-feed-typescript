@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/lazy-feed-typescript/static/css/main.a7a3f7d3.chunk.css",
-    "main.js": "/lazy-feed-typescript/static/js/main.a85b92f9.chunk.js",
-    "main.js.map": "/lazy-feed-typescript/static/js/main.a85b92f9.chunk.js.map",
+    "main.js": "/lazy-feed-typescript/static/js/main.d1c8c0c7.chunk.js",
+    "main.js.map": "/lazy-feed-typescript/static/js/main.d1c8c0c7.chunk.js.map",
     "runtime-main.js": "/lazy-feed-typescript/static/js/runtime-main.86c99a5f.js",
     "runtime-main.js.map": "/lazy-feed-typescript/static/js/runtime-main.86c99a5f.js.map",
     "static/js/2.ab814f3b.chunk.js": "/lazy-feed-typescript/static/js/2.ab814f3b.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.86c99a5f.js",
     "static/js/2.ab814f3b.chunk.js",
     "static/css/main.a7a3f7d3.chunk.css",
-    "static/js/main.a85b92f9.chunk.js"
+    "static/js/main.d1c8c0c7.chunk.js"
   ]
 }
