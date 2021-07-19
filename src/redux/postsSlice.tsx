@@ -26,7 +26,7 @@ export interface Author {
 const initialState: InitialState = {
     posts: [] as Array<PostType>,
     hiddenPosts: [] as Array<PostType>,
-    autoUpload: false,
+    autoUpload: true,
     autoUpdate: true,
     clearOld: true
 }
