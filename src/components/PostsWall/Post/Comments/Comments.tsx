@@ -25,7 +25,6 @@ interface IWriteComment {
 }
 
 export const Comments: React.FC<IComments> = React.memo(({ commentsIsShow, setShowComments, comments, addComment }) => {
-    console.log('render Comments')
     const userName = useAppSelector(state => state.auth.firstname + ' ' + state.auth.lastname)
     const isAuth = useAppSelector(state => state.auth.isAuth)
     const dispatch = useAppDispatch()
@@ -49,9 +48,7 @@ export const Comments: React.FC<IComments> = React.memo(({ commentsIsShow, setSh
     )
 })
 
-const Comment: React.FC<IComment> = ({ comment, userName }) => {
-    console.log('render comment');
-    
+const Comment: React.FC<IComment> = ({ comment, userName }) => {  
     return (
         <div className={styles.comment}>
             <div className={styles.commentsAvatarWrapper}>

@@ -7,7 +7,6 @@ import { FixedControls } from './components/Controls/FixedControls/FixedControls
 import { LeftSideControls } from './components/Controls/LeftSideControls/LeftSideControls';
 
 function App() {
-    console.log('render App')
     return (
         <div className={styles.App}>
             <Header />

@@ -14,7 +14,6 @@ interface Ipost {
 }
 
 export const Post: React.FC<Ipost> = ({ postId, firstname, lastname, avatar, contentImage }) => {
-    console.log('render post');
     
     let [likes, setLikes] = useState(getRandomCeilInt(0, 1000))
     let [likedByMe, setLikedByMe] = useState(false)
