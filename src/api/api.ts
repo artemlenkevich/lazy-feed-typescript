@@ -38,7 +38,7 @@ export const postsApi = {
                 for (let i = 0; i < quantity; i++) {
                     posts.push({author: users[i], contentImageUrl: photos[i], id: Math.random()})
                 }
-                return posts
+                return posts;
             })
     },
     getRandomUsers(quantity: number) {
@@ -54,7 +54,7 @@ export const postsApi = {
                     id: randomUser.login.uuid
                 })
             })
-            return users
+            return users;
         })
     },
     getRandomContentPhotos(quantity: number) {

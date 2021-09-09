@@ -30,7 +30,8 @@ export const modalsSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(setAuthData, (state, action) => {
-                state.signUp.isOpen = false
+                state.signUp.isOpen = false;
+                state.signIn.isOpen = false;
             })
     }
 })

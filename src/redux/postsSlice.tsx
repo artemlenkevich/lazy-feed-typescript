@@ -38,7 +38,7 @@ export const requestPosts = createAsyncThunk<Array<PostType>, number, {dispatch:
         const totalPostsCountIsExceeded = state.posts.posts.length + state.posts.hiddenPosts.length >= 50
 
         if (!state.posts.clearOld && totalPostsCountIsExceeded) {
-            return []
+            return [];
         }
 
         return postsApi.getPosts(quantity)
@@ -101,6 +101,6 @@ export const postsSlice = createSlice({
     }
 })
 
-export const { setAutoUpload, setAutoUpdate, setClearOld, showHiddenPosts, removePost } = postsSlice.actions
+export const { setAutoUpload, setAutoUpdate, setClearOld, showHiddenPosts, removePost } = postsSlice.actions;
 
-export const postsReducer =  postsSlice.reducer
+export const postsReducer =  postsSlice.reducer;

@@ -11,6 +11,7 @@ export let Auth: React.FC<{}> = () => {
     const signInIsOpen = useAppSelector(state => state.modals.signIn.isOpen)
 
     const onOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        
         if (e.target === e.currentTarget) {
             dispatch(setSignUpIsOpen(false))
             dispatch(setSignInIsOpen(false))
